@@ -16,8 +16,8 @@ My site is published at https://zidandesirae.github.io/Password-Generator/
 
 Desktop:
 
-![LargeScreen](LargeScreen.jpg.png)
+![LargeScreen](LargeScreen.png)
 
 Mobile:
 
-![SmallScreen](SmallScreen.jpg.png)
+![SmallScreen](SmallScreen.png)

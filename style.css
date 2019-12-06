@@ -1,14 +1,13 @@
 body {
-    background-color: black;
+    background-color: rgb(249,251,253);
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
     max-width: 100%;
-    background-color: rgb(249,251,253);
     margin: auto;
     width: 60%;
-    margin-top: 115px;
+    margin-top: 50px;
     padding: 15px;
 }
 
@@ -51,7 +50,7 @@ textarea {
     border-width: 3px;
 }
 
-#textbox {
+#password {
     border-style: dashed;
     border-radius: 10px;
     border-color:lightgray;

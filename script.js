@@ -71,7 +71,7 @@ function getConfirms() {
 
     //Alert for if all of the above choices are false
     if ((hasLower === false) && (hasUpper === false) && (hasNumber === false) && (hasSpecial === false)) {
-        alert("You need to select at least one character type to continue.");
+        alert("You must select at least one character type.");
         getPrompt();
     };
 

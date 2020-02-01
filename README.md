@@ -11,7 +11,7 @@ Once all prompts are answered, the user will be presented with a password matchi
 The user also has the option to click a button to copy the password to their clipboard.
 
 
-My site is published at https://zidandesirae.github.io/Password-Generator/ 
+My site is published at https://zidandesirae.github.io/3-JavaScript-PasswordGenerator/
 
 
 Desktop:

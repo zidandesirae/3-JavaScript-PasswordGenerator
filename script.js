@@ -1,99 +1,72 @@
-// Define variables
-let passwordLength = 0;
-let charSelected = [];
-let randomChar = 0;
-let finalPassword = "";
+const generateBtn = document.querySelector("#generate");
+const copyBtn = document.querySelector("#copy");
 
+//this function will fire when you click the generate password button on the page
+function generatePassword() {
+    const askPwdLength = prompt("How long do you want your password to be? Your password MUST be 8 to 128 characters.");
 
-//Create array of lowercase letters
-const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-//Create array of uppercase letters
-const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-//Create array of numbers
-const number = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-//Create array of special characters
-const special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "="];
+    if (askPwdLength >= 8 && askPwdLength <= 128) {
+        alert("Your password will have " + askPwdLength + " characters");
+        console.log(askPwdLength);
 
+        const upperCase = confirm("Do you want uppercase characters in your password?")
+        const lowerCase = confirm("Do you want lowercase characters in your password?")
+        const special = confirm("Do you want special characters in your password?")
+        const number = confirm("Do you want numbers in your password?")
 
-//Onclick of 'Generate Password' button to open popup window
-function startPrompt() {
-    getPrompt();
-    getConfirms();
-};
+        let charSelected = ""
+        let password = ""
 
-//Popup prompt
-function getPrompt() {
-    passwordLength = prompt("Password Length: How many characters would you like your password to be? (Must be between 8 and 128 characters.)");
+        if (upperCase) {
+            charSelected += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        }
 
-    numberLength = parseInt(passwordLength);
-    passwordLength = numberLength;
+        if (lowerCase) {
+            charSelected += "abcdefghijklmnopqrstuvwxyz"
+        }
 
-    while (passwordLength <= 7 || passwordLength >= 129) {
-        alert("Try again, please. Must be a number between 8 and 128.");
-        passwordLength = prompt("Password Length: How many characters would you like your password to be? (Must be between 8 and 128 characters.)");
-    
-        numberLength = parseInt(passwordLength);
-        passwordLength = numberLength;   
-    };
+        if (special) {
+            charSelected += "!#$%&'()*+,-./:;<=>?@_`{|}[]~"
+        }
 
-};
+        if (number) {
+            charSelected += "0123456789"
+        }
 
-//Popup confirms
-function getConfirms() {
-    const hasLower = confirm("Character Type: Would you like to include lowercase letters?");
+        for (i = 0; i < askPwdLength; i++) {
+            console.log("i" + i);
+            password += charSelected.charAt(Math.floor(Math.random() * charSelected.length));
+            console.log("password" + password)
+            console.log("charSelected" + charSelected)
+        }
 
-    const hasUpper = confirm("Character Type: Would you like to include uppercase letters?");
-    
-    const hasNumber = confirm("Character Type: Would you like to include numeric characters?");
-    
-    const hasSpecial = confirm("Character Type: Would you like to include special characters?");
-   
-    //Generate arrays of selected characters
-    if (hasLower) {
-        lowerArr = charSelected.concat(lowercase);
-        charSelected = lowerArr;
-    };
-    
-    if (hasUpper) {
-        upperArr = charSelected.concat(uppercase);
-        charSelected = upperArr;
-    };
-    
-    if (hasNumber) {
-        numberArr = charSelected.concat(number);
-        charSelected = numberArr;
-    };
-    
-    if (hasSpecial) {
-        specialArr = charSelected.concat(special);
-        charSelected = specialArr;
-    };
+        return (password);
+    } 
+    else {
+        alert("Your password needs to be 8-128 characters long. Try again.");
+    }
+}
 
-    //Alert for if all of the above choices are false
-    if ((hasLower === false) && (hasUpper === false) && (hasNumber === false) && (hasSpecial === false)) {
-        alert("You must select at least one character type.");
-        getPrompt();
-    };
+// Write password to the #password input
+function writePassword() {
+    let password = generatePassword();
+    let passwordText = document.querySelector("#password");
 
+    passwordText.value = password;
 
-    //Create the fnal password
-    for (let i = 0; i < passwordLength; i++) {
-        randomChar = Math.floor(Math.random() * charSelected.length);
-        finalPassword += charSelected[randomChar];
-    };
+    copyBtn.removeAttribute("disabled");
+    copyBtn.focus();
+}
 
-    document.getElementById("password").value = finalPassword;
-};
-
-//function to copy password to clipboard
-function copyClipboard() {
-    copyPassword();
-};
-
-function copyPassword() {
-    let copyText = document.getElementById("password");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999)
+//Copy password to Clipboard
+function copyToClipboard() {
+    let password = document.getElementById("password");
+    password.select();
+    password.setSelectionRange(0, 99999)
     document.execCommand("copy");
-    alert("Password Copied!")
-};
+    alert("Copied the text: " + password.value);
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);

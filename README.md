@@ -36,8 +36,6 @@ My site is published at https://zidandesirae.github.io/3-JavaScript-PasswordGene
 
 Desktop:
 
-![LargeScreen](LargeScreen.png)
+![/images/HW3image.png](/images/HW3image.png)
 
-Mobile:
 
-![SmallScreen](SmallScreen.png)

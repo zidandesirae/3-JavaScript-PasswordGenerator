@@ -33,9 +33,6 @@ THEN the password is either displayed in an alert or written to the page
 
 My site is published at https://zidandesirae.github.io/3-JavaScript-PasswordGenerator/
 
-
-Desktop:
-
 ![/images/HW3image.png](/images/HW3image.png)
 
 
